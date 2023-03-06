@@ -3,7 +3,7 @@
 ## Student.java / Student_After_Refactoring.java
 + 함수의 이름만 명확하게 Renaming 하였음.
 ----------------
-## ScoreReportMain.java ScoreReportMain_After_Refactoring.java
+## ScoreReportMain.java / ScoreReportMain_After_Refactoring.java
 + 명확하지 않은 변수 및 함수의 이름을 명확하게 Renaming 하였음.
 + switch 문의 조건을 Polymorphism 하게 Replace 하였음.
 + 학생이름을 입력받는 코드 부분이 중복되어 모듈화 하였음.
