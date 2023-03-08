@@ -14,7 +14,7 @@ public class ScoreReportMain {
 		BASE_INIT;
 	}
 	private static Scanner scanner = new Scanner(System.in) ;
-	private List<Student> student = new ArrayList<Student>();
+	private List<Student> studentList = new ArrayList<Student>();
 
 	public static void main(String[] args) {
 		ScoreReportMain Report = new ScoreReportMain() ;
@@ -69,12 +69,12 @@ public class ScoreReportMain {
 		brown.getScore().add(60) ;
 		brown.getScore().add(50) ;
 
-		student.add(james) ;
-		student.add(brown) ;
+		studentList.add(james) ;
+		studentList.add(brown) ;
 	}
 	private void ClearScore() {
 		String inputStudentName = inputStudentName();
-		for ( Student st : student ) {
+		for ( Student st : studentList ) {
 			if ( isEqualName(inputStudentName, st)) {
 				st.getScore().clear();
 				System.out.println("Score cleared");
@@ -94,32 +94,37 @@ public class ScoreReportMain {
 	}
 	private void ShowStudentReport() {
 		String inputStudentName = inputStudentName();
-		for ( Student st : student ) {
+		for ( Student st : studentList ) {
 			if ( isEqualName(inputStudentName, st)) {
-				int sum = 0 ;
-				for ( Integer score: st.getScore()) {
-					System.out.print(score + " ");
-					sum += score ;
-				}
+				int sum = sumOfScores(st);
 				System.out.println("Sum: " + sum);
 				break;
 			}
 		}
 	}
+
+	private int sumOfScores(Student st) {
+		int sum = 0 ;
+		for ( Integer score: st.getScore()) {
+			System.out.print(score + " ");
+			sum += score ;
+		}
+		return sum;
+	}
 	private void addStudentName() {
 		String inputStudentName = inputStudentName();
 		Student s = new Student(inputStudentName);
-		student.add(s) ;
+		studentList.add(s) ;
 	}
 	private void addStudentScore() {
-		final int STOP = -1;
 		String inputStudentName = inputStudentName();
-		for ( Student st : student ) {
+		for ( Student st : studentList ) {
 			if ( isEqualName(inputStudentName, st)) {
 				System.out.println("Enter scores( -1 for quit): ") ;
 				while ( true ) {
 					int stopInputScore = scanner.nextInt() ;
-					if ( stopInputScore == STOP ) break ;
+					final boolean STOP = stopInputScore == -1;
+					if ( STOP ) break ;
 
 					st.getScore().add(stopInputScore) ;
 				}
